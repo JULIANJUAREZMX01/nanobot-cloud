@@ -1,0 +1,14 @@
+telegram:
+  enabled: true
+  token: ${TELEGRAM_TOKEN}
+  polling_interval: 1
+
+mcp:
+  enabled: true
+  port: 3001
+  host: 0.0.0.0
+
+dashboard:
+  enabled: true
+  port: 8000
+  public_url: https://nanobot.onrender.com

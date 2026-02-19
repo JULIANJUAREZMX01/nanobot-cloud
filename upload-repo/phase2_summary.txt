@@ -1,0 +1,42 @@
+FASE 2: AGENT LOOP + LLM INTEGRATION
+=====================================
+
+✅ Componentes Implementados:
+
+1. app/core/loop.py (175 líneas)
+   - AgentLoop class
+   - Message processing
+   - Tool execution orchestration
+   - Error handling
+
+2. app/cloud/providers.py (236 líneas)
+   - GroqProvider (primary)
+   - AnthropicProvider (fallback)
+   - ProviderManager with retry logic
+
+3. app/core/tools.py (238 líneas)
+   - ToolExecutor with 6 tools
+   - Shell execution
+   - File operations
+   - Git commands
+   - Web fetching
+
+4. app/cloud/sessions.py (143 líneas)
+   - SessionManager
+   - JSONL persistence
+   - Session cleanup
+   - Statistics
+
+5. Updated Components:
+   - app/cloud/telegram_bot.py (agent loop integration)
+   - app/main.py (component initialization)
+
+6. Tests:
+   - tests/test_agent_loop.py (46 líneas)
+   - tests/test_providers.py (38 líneas)
+   - tests/test_tools.py (83 líneas)
+
+ESTADO: Fase 2 completada 100%
+VERSIÓN: 0.2.0
+PRÓXIMO: Fase 3 - Deploy en Render
+

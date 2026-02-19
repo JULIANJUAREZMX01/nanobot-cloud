@@ -1,0 +1,14 @@
+anthropic:
+  api_key: ${ANTHROPIC_API_KEY}
+  model: claude-opus-4-5
+  max_tokens: 8192
+  temperature: 0.7
+
+groq:
+  api_key: ${GROQ_API_KEY}
+  model: llama-3.3-70b-versatile
+  max_tokens: 8192
+  temperature: 0.7
+
+# Fallback order: groq -> anthropic
+primary: groq

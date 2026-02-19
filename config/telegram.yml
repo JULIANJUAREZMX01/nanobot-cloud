@@ -1,0 +1,8 @@
+enabled: true
+token: ${TELEGRAM_TOKEN}
+user_id: ${TELEGRAM_USER_ID}
+allowed_users:
+  - "8247886073"
+polling:
+  timeout: 30
+  drop_pending_updates: false

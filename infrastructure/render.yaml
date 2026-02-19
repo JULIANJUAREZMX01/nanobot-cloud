@@ -1,0 +1,68 @@
+services:
+  - type: web
+    name: nanobot
+    runtime: python
+    plan: free
+    
+    # Build and deploy commands
+    buildCommand: |
+      pip install --upgrade pip && \
+      pip install poetry && \
+      poetry install --only main
+    
+    startCommand: |
+      python -m uvicorn app.main:app \
+      --host 0.0.0.0 \
+      --port 8000 \
+      --workers 1
+    
+    # Environment variables (set these in Render dashboard)
+    envVars:
+      - key: TELEGRAM_TOKEN
+        scope: run
+        sync: false
+      - key: TELEGRAM_USER_ID
+        scope: run
+        value: "8247886073"
+      - key: GROQ_API_KEY
+        scope: run
+        sync: false
+      - key: ANTHROPIC_API_KEY
+        scope: run
+        sync: false
+      - key: AWS_ACCESS_KEY_ID
+        scope: run
+        sync: false
+      - key: AWS_SECRET_ACCESS_KEY
+        scope: run
+        sync: false
+      - key: AWS_REGION
+        scope: run
+        value: "us-east-1"
+      - key: S3_BUCKET
+        scope: run
+        sync: false
+      - key: ENVIRONMENT
+        scope: run
+        value: "production"
+      - key: LOG_LEVEL
+        scope: run
+        value: "INFO"
+    
+    # Auto-deploy on push
+    autoScaleFactor: 1
+    preDeployCommand: "pytest tests/ || true"
+    
+    # Health check configuration
+    healthCheckPath: /api/status
+    
+    # Disk size (useful for data/backups)
+    disk:
+      name: nanobot-data
+      sizeGB: 1
+
+# Optional: PostgreSQL for sessions (if needed in future)
+# databases:
+#   - name: nanobot-db
+#     databaseName: nanobot
+#     plan: free
